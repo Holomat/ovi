@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>ovi _ 2</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T20 Electric Bike - Bicicleta Eléctrica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <img src="https://i.imgur.com/J4rlN11.gif" alt="Hero Video" class="hero-gif">
+    </section>
+
+    <header class="header">
+        <div class="logo">
+            <img src="https://i.imgur.com/9gFD9c3.png" alt="Logo">
+        </div>
+        
+        <div class="header-icons">
+            <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            
+            <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            
+            <div class="menu-icon">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Carousel Section -->
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Product 1 - Movido del puesto 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.imgur.com/WPbS1zO.jpeg" alt="Diseño Premium">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">DISEÑO PREMIUM</h3>
+                        <p class="product-description">Detalle de producto</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 - Antes era el 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.imgur.com/vsRcERS.png" alt="Visor Digital">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">VISOR DIGITAL</h3>
+                        <p class="product-description">Detalle de producto</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 - Antes era el 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.imgur.com/BDFsCuP.png" alt="Frenos de Disco">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">DISCOS DE FRENO 160MM</h3>
+                        <p class="product-description">Conducción más segura</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 - Antes era el 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.imgur.com/Zi3z9xb.png" alt="Transmisión y Velocidades">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">7 VELOCIDADES</h3>
+                        <p class="product-description">Equipado con Shimano</p>
+                    </div>
+                </div>
+
+                <!-- Product 5 - Antes era el 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.coswheelebike.com/cdn/shop/files/T20-1000W-06.jpg?v=1753107211&width=800" alt="Bicicleta Completa">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">BICICLETA COMPLETA</h3>
+                        <p class="product-description">Detalle de producto</p>
+                    </div>
+                </div>
+
+                <!-- Product 6 - Se mantiene en el último lugar -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.imgur.com/005w2dG.jpeg" alt="Marco de Aleación de Aluminio">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">MARCO DE ALUMINIO</h3>
+                        <p class="product-description">Aluminio 6061-T6</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-container">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-indicator" id="progressIndicator"></div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <button class="nav-button" id="prevButton">
+                    <svg class="chevron" id="prevChevron" viewBox="0 0 24 24">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button class="nav-button" id="nextButton">
+                    <svg class="chevron" id="nextChevron" viewBox="0 0 24 24">
+                        <path d="m9 18 6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="feature-item">
+            <div class="feature-icon">
+                <img src="https://i.imgur.com/Oi9W61z.png" alt="Autonomía" width="36" height="36">
+            </div>
+            <p class="feature-text">AUTONOMÍA 113KM</p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">
+                <img src="https://i.imgur.com/qZXqoBO.png" alt="Velocidad" width="36" height="36">
+            </div>
+            <p class="feature-text">VELOCIDAD MÁXIMA 45KM/H</p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">
+                <img src="https://i.imgur.com/xcvuSLg.png" alt="Potencia Motor" width="36" height="36">
+            </div>
+            <p class="feature-text">POTENCIA MÁXIMA 1500W</p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">
+                <img src="https://i.imgur.com/LxqljFt.png" alt="Batería" width="36" height="36">
+            </div>
+            <p class="feature-text">BATERÍA 960WH</p>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+        <div class="newsletter-content">
+            <h2 class="newsletter-title">PRUEBA LA T20<br>HOY MISMO</h2>
+            <p class="newsletter-description">Agenda tu test drive y descubre la nueva experiencia de movilidad urbana.</p>
+            
+            <form class="newsletter-form">
+                <div class="input-group">
+                    <input type="email" class="newsletter-input" placeholder="Correo Electrónico" required>
+                </div>
+                <div class="input-group">
+                    <input type="tel" class="newsletter-input" placeholder="Número de Teléfono" required>
+                </div>
+                <button type="submit" class="submit-button">AGENDAR TEST DRIVE</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
