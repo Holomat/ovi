@@ -451,11 +451,12 @@
         }
 
         .product-image-container img {
-            width: 101.27%;
+            width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Cambiado de cover a contain */
+            object-position: center; /* Centrar la imagen */
             position: absolute;
-            left: -1.17%;
+            left: 0; /* Removido el offset negativo */
             top: 0;
             transition: opacity 0.3s ease;
         }
@@ -1316,6 +1317,7 @@
                 this.currentIndex = 0;
                 this.totalSlides = this.track.children.length;
                 this.isAnimating = false;
+                this.autoplayActive = false; // Nueva propiedad para controlar autoplay
                 
                 // Touch/swipe properties
                 this.isDragging = false;
@@ -1331,6 +1333,7 @@
                 this.updateView();
                 this.setupEventListeners();
                 this.preloadImages();
+                // NO iniciar autoplay automáticamente
             }
             
             setupEventListeners() {
@@ -1358,9 +1361,6 @@
                 this.wrapper.addEventListener('mousemove', (e) => this.handleMouseMove(e));
                 this.wrapper.addEventListener('mouseup', (e) => this.handleMouseEnd(e));
                 this.wrapper.addEventListener('mouseleave', (e) => this.handleMouseEnd(e));
-                
-                // Auto-play
-                this.startAutoplay();
             }
             
             // Touch Events
@@ -1499,14 +1499,26 @@
                 });
             }
             
-            // Auto-play
+            // Auto-play methods modificados
             startAutoplay() {
+                if (!this.autoplayActive) return; // Solo iniciar si está activo
                 this.autoplayInterval = setInterval(() => {
                     this.next();
                 }, 5000);
             }
             
+            activateAutoplay() {
+                this.autoplayActive = true;
+                this.startAutoplay();
+            }
+            
+            deactivateAutoplay() {
+                this.autoplayActive = false;
+                this.stopAutoplay();
+            }
+            
             resetAutoplay() {
+                if (!this.autoplayActive) return; // Solo resetear si está activo
                 clearInterval(this.autoplayInterval);
                 this.startAutoplay();
             }
@@ -1528,7 +1540,51 @@
             
             // Inicializar scroll header/logo functionality
             initScrollHeaderToggle();
+            
+            // Inicializar sistema de autoplay por sección
+            initCarouselAutoplayOnScroll();
         });
+
+        // SISTEMA DE AUTOPLAY POR SECCIÓN - Intersection Observer
+        function initCarouselAutoplayOnScroll() {
+            const carousels = [
+                { element: document.getElementById('carousel1'), instance: window.carousel1 },
+                { element: document.getElementById('carousel2'), instance: window.carousel2 },
+                { element: document.getElementById('carousel3'), instance: window.carousel3 },
+                { element: document.getElementById('carousel4'), instance: window.carousel4 },
+                { element: document.getElementById('carousel5'), instance: window.carousel5 },
+                { element: document.getElementById('carousel6'), instance: window.carousel6 }
+            ];
+
+            // Configuración del Intersection Observer
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '-20% 0px -20% 0px', // Activar cuando está 20% dentro del viewport
+                threshold: 0.3 // Al menos 30% del carrusel debe ser visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const carouselData = carousels.find(c => c.element === entry.target);
+                    if (carouselData && carouselData.instance) {
+                        if (entry.isIntersecting) {
+                            // Carrusel entra en viewport - activar autoplay
+                            carouselData.instance.activateAutoplay();
+                        } else {
+                            // Carrusel sale del viewport - desactivar autoplay
+                            carouselData.instance.deactivateAutoplay();
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observar cada carrusel
+            carousels.forEach(carousel => {
+                if (carousel.element && carousel.instance) {
+                    observer.observe(carousel.element);
+                }
+            });
+        }
 
         // FUNCIONALIDAD DE ALTERNANCIA HEADER/LOGO EN HERO - Scroll gradual
         function initScrollHeaderToggle() {
@@ -1603,7 +1659,10 @@
                     if (document.hidden) {
                         carousel.stopAutoplay();
                     } else {
-                        carousel.resetAutoplay();
+                        // Solo reactivar si el carrusel tenía autoplay activo
+                        if (carousel.autoplayActive) {
+                            carousel.startAutoplay();
+                        }
                     }
                 }
             });
