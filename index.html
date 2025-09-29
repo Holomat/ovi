@@ -3,1684 +3,736 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ovi | E-Bikes Premium - Coswheel T20</title>
+    <title>OVI E-Bike - Coswheel T20</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        :root {
-            --primary-black: #05041C;
-            --secondary-gray: #716d6b;
-            --light-gray: #F5F5F7;
-            --medium-gray: #939493;
-            --dark-gray: #454546;
-            --background-white: #ffffff;
-            --border-color: #e5e5e5;
-            --gradient-start: #4b45bf;
-            --gradient-end: #232059;
-            --text-dark: #2d0b2b;
-            --hero-gradient: linear-gradient(180deg, #E8E8FF 0%, #F0F0FF 100%);
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--primary-black);
-            background-color: var(--background-white);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            padding: 0;
-            margin: 0;
             width: 100%;
             max-width: 100vw;
         }
-
-        img {
-            max-width: 100%;
-            height: auto;
+        
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        /* DESKTOP VERSION */
+        .desktop-container {
+            width: 100vw;
+            min-height: 100vh;
+            background: #c4c4c4;
+            position: relative;
             display: block;
         }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        /* Header Mobile - Inicialmente oculto cuando hay hero */
-        .header {
-            position: fixed;
-            top: -56px; /* Inicialmente oculto arriba */
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 32px);
-            height: 44px;
-            background: rgba(5, 4, 28, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 0.5px solid rgba(0, 0, 0, 0.1);
-            border-radius: 22px;
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 1000;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            opacity: 0;
-        }
-
-        .header.visible {
-            top: 12px;
-            opacity: 1;
-        }
-
-        .logo {
-            height: 27.5px;
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .logo img {
-            height: 27.5px;
-            width: auto;
-            object-fit: contain;
-            /* Técnica alternativa para color exacto #D2D0E9 */
-            filter: brightness(0) invert(1);
-            background-color: #D2D0E9;
-            -webkit-mask: url('https://i.imgur.com/9gFD9c3.png') no-repeat center;
-            -webkit-mask-size: contain;
-            mask: url('https://i.imgur.com/9gFD9c3.png') no-repeat center;
-            mask-size: contain;
-        }
-
-        .cta-btn {
-            background: #161535;
-            color: #5953E6;
-            border: none;
-            border-radius: 50px;
-            padding: 6px 16px; /* Más padding horizontal para el texto más largo */
-            font-family: 'Source Sans 3', system-ui, sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            height: 27.5px;
-            line-height: 1;
-            box-sizing: border-box;
-            white-space: nowrap; /* Evitar que el texto se corte en líneas */
-        }
-
-        .cta-btn:hover {
-            background: #0f0f2a;
-            transform: scale(1.05);
-        }
-
-        /* HERO MOBILE SECTION */
-        .hero-mobile {
-            min-height: 100vh;
-            background-image: url('https://i.imgur.com/WH4x3Xl.jpeg');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 80px 24px 40px 24px;
-            position: relative;
-            text-align: center;
-        }
-
-        /* Overlay sutil para mejorar legibilidad del texto */
-        .hero-mobile::before {
-            content: '';
+        
+        .bg-image {
             position: absolute;
+            left: 0;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, 
-                rgba(232, 232, 255, 0.1) 0%, 
-                rgba(240, 240, 255, 0.2) 50%,
-                rgba(232, 232, 255, 0.3) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 320px;
-            width: 100%;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 160px); /* Resta padding top y bottom */
-            justify-content: space-between;
-        }
-
-        /* Logo en el Hero - Posición izquierda y color negro */
-        .hero-logo {
-            position: absolute;
-            top: -48px; /* Posición relativa al hero-content */
-            left: 0; /* Alineado a la izquierda */
-            width: calc(100vw - 32px);
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; /* Alineado a la izquierda */
-            padding: 0 16px;
-            z-index: 3;
-            opacity: 1;
-            transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .hero-logo.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .hero-logo .logo {
-            height: 27.5px;
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .hero-logo .logo img {
-            height: 27.5px;
-            width: auto;
-            object-fit: contain;
-            /* Técnica alternativa para color exacto #93A4B4 */
-            filter: brightness(0) invert(1);
-            background-color: #93A4B4;
-            -webkit-mask: url('https://i.imgur.com/9gFD9c3.png') no-repeat center;
-            -webkit-mask-size: contain;
-            mask: url('https://i.imgur.com/9gFD9c3.png') no-repeat center;
-            mask-size: contain;
-        }
-
-        .hero-top-content {
-            flex: 0;
-            margin-top: 20px;
-        }
-
-        .hero-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 1.2;
-            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
-        }
-
-        .hero-subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.3;
-            color: var(--text-dark);
-            margin-bottom: 0;
-            letter-spacing: -0.01em;
-        }
-
-        .hero-bottom-content {
-            flex: 0;
-            margin-bottom: 24px; /* Reducido a 24px */
-        }
-
-        .hero-cta-container {
-            width: 100%;
-            margin-bottom: 0;
-        }
-
-        .hero-cta-btn {
-            width: 100%;
-            max-width: 252px; /* Reducido 36px más: 288px - 36px = 252px */
-            height: 48px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            border: 2px solid #D2CFFF;
-            color: white;
-            border-radius: 24px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 4px 20px rgba(75, 69, 191, 0.3);
-            padding: 0 40px;
-            white-space: nowrap;
-            background-size: 200% 100%;
-            animation: gradientShift 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .hero-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(75, 69, 191, 0.4);
-        }
-
-        .hero-cta-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Barra de Stock - Ancho reducido */
-        .stock-container {
-            width: 100%;
-            max-width: 250px; /* Reducido de 266px a 250px */
-            margin: 0 auto 12px auto;
-        }
-
-        .stock-bar-wrapper {
-            position: relative;
-            width: 100%;
-            height: 14px; /* Aumentado para acomodar la barra base más alta */
-            margin-bottom: 12px;
-        }
-
-        .stock-bar-base {
-            width: calc(100% + 4px); /* 2px más grande para cada lado */
-            height: 10px; /* Alto aumentado a 10px */
-            background-color: #0A1631;
-            border-radius: 5px; /* Ajustado proporcionalmente */
-            position: absolute;
-            top: 2px;
-            left: -2px; /* Centrado con el offset */
-        }
-
-        .stock-bar-progress {
-            width: 3%; /* CAMBIADO A 3% */
-            height: 6px; /* Alto reducido a 6px */
-            background-color: #4B45BF;
-            border-radius: 3px; /* Ajustado proporcionalmente */
-            position: absolute;
-            top: 4px; /* Centrado verticalmente con la nueva barra base */
-            left: 0;
-        }
-
-        .stock-text {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px; /* Mismo tamaño que el subtítulo del hero */
-            font-weight: 400; /* Mismo peso que el subtítulo del hero */
-            line-height: 1.3; /* Mismo line-height que el subtítulo del hero */
-            color: var(--text-dark);
-            text-align: center;
-            letter-spacing: -0.01em;
-            margin-bottom: 12px; /* Reducido de 16px a 12px */
-        }
-
-        .hero-pricing {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 1.3;
-            color: var(--text-dark);
-            text-align: center;
-            letter-spacing: -0.01em;
-        }
-
-        /* MOBILE CAROUSEL COMPONENT - Sistema de Diseño */
-        .mobile-carousel-component {
-            /* CSS Custom Properties para personalización */
-            --carousel-bg: var(--background-white);
-            --carousel-padding-top: 80px;
-            --carousel-padding-bottom: 60px;
-            --carousel-min-height: 100vh;
-            
-            /* Propiedades del contenido */
-            --content-eyebrow-color: var(--text-dark);
-            --content-headline-gradient-start: var(--gradient-start);
-            --content-headline-gradient-end: var(--gradient-end);
-            --content-body-color: var(--text-dark);
-            
-            /* Propiedades de las imágenes */
-            --image-max-width: 370px;
-            --image-height: 552px;
-            --image-border-radius: 18px;
-            --image-margin-bottom: 32px;
-            
-            /* Propiedades de las flechas */
-            --arrow-size: 48px;
-            --arrow-gap: 20px;
-            --arrow-bottom-position: 78px;
-            --arrow-right-position: 44px;
-            --arrow-bg: rgba(255, 255, 255, 0.1); /* Opacidad reducida a 10% */
-            --arrow-border: 2px solid rgba(255, 255, 255, 0.3); /* Trazo aumentado a 2px */
-            
-            /* Aplicar variables */
-            padding: var(--carousel-padding-top) 0 var(--carousel-padding-bottom) 0;
-            background: var(--carousel-bg);
-            min-height: var(--carousel-min-height);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-
-        /* Carousel Wrapper */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            touch-action: pan-y;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            will-change: transform;
-        }
-
-        .carousel-track.dragging {
-            transition: none;
-        }
-
-        /* Carousel Cards */
-        .carousel-card {
-            flex: 0 0 100%;
-            width: 100%;
-            padding: 0 12px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Product Image Container */
-        .product-image-container {
-            width: 100%;
-            max-width: var(--image-max-width);
-            height: var(--image-height);
-            border-radius: var(--image-border-radius);
-            overflow: hidden;
-            position: relative;
-            margin-bottom: var(--image-margin-bottom);
-            background: #f8f8f8;
-        }
-
-        .product-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Cambiado de cover a contain */
-            object-position: center; /* Centrar la imagen */
-            position: absolute;
-            left: 0; /* Removido el offset negativo */
-            top: 0;
-            transition: opacity 0.3s ease;
+            object-fit: cover;
         }
-
-        .product-image-container img[src=""] {
-            opacity: 0;
+        
+        .bg-image-mobile {
+            display: none;
         }
-
-        /* Navigation Controls */
-        .carousel-navigation {
+        
+        .logo {
             position: absolute;
-            bottom: var(--arrow-bottom-position);
-            right: var(--arrow-right-position);
+            left: 4vw;
+            top: 40px;
+            width: 80px;
+            height: auto;
+        }
+        
+        .logo .cls-1 {
+            fill: #e2e5f8;
+        }
+        
+        .product-tag {
+            position: absolute;
+            left: 50%;
+            top: 5vh;
+            transform: translateX(-50%);
+            width: 576px;
+            color: #e2e5f8;
+            font-size: 21px;
+            font-weight: 500;
+            text-align: center;
+            line-height: normal;
+        }
+        
+        .main-content {
+            position: absolute;
+            left: 4vw;
+            bottom: 8vh;
+            width: 92vw;
             display: flex;
-            align-items: center;
-            gap: var(--arrow-gap);
-            z-index: 10;
-            pointer-events: auto;
+            justify-content: space-between;
+            align-items: flex-end;
         }
-
-        .nav-arrow {
-            width: var(--arrow-size);
-            height: var(--arrow-size);
-            background: var(--arrow-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: var(--arrow-border);
-            border-radius: 50%;
+        
+        .left-section {
+            width: 731px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .cta-button {
+            width: 431px;
+            height: 77px;
+            border: 1px solid #e2e5f8;
+            border-radius: 51px;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
-            position: relative;
+            transition: background 0.3s;
         }
-
-        .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.35);
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-            transform: scale(1.05);
+        
+        .cta-button:hover {
+            background: rgba(226, 229, 248, 0.05);
         }
-
-        .nav-arrow:active {
-            transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.4);
+        
+        .cta-button p {
+            color: #e2e5f8;
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 0;
         }
-
-        .nav-arrow:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .nav-arrow:disabled:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transform: none;
-        }
-
-        .nav-arrow svg {
-            width: 20px;
-            height: 20px;
-            color: rgba(255, 255, 255, 0.95);
-            transition: color 0.3s ease;
-            stroke-width: 2.5;
-        }
-
-        .nav-arrow:hover svg {
-            color: rgba(255, 255, 255, 1);
-        }
-
-        .next-arrow svg {
-            transform: rotate(180deg);
-        }
-
-        /* Content Section */
-        .carousel-content {
-            padding: 0 20px;
-            text-align: left;
-            max-width: var(--image-max-width);
-            margin: 0 auto;
-            transition: opacity 0.3s ease;
-        }
-
-        .carousel-content.transitioning {
-            opacity: 0.7;
-        }
-
-        .content-eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1;
-            color: var(--content-eyebrow-color);
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        .content-headline {
-            font-family: 'Inter', sans-serif;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 1;
-            background: linear-gradient(to bottom, var(--content-headline-gradient-start), var(--content-headline-gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: -0.01em;
-        }
-
-        .content-body {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.4;
-            color: var(--content-body-color);
-            margin: 0;
-        }
-
-        /* SECCIÓN FINAL - CÓMO COMPRAR */
-        .final-section {
-            background-color: var(--primary-black);
-            color: white;
-            padding: 60px 20px 40px 20px;
-            text-align: left;
-            position: relative;
-        }
-
-        .final-container {
-            max-width: 370px;
-            margin: 0 auto;
+        
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
             width: 100%;
         }
-
-        .final-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 20px;
+        
+        .text-content h1 {
+            width: 624px;
+            color: #e2e5f8;
+            font-size: 56px;
             font-weight: 600;
-            line-height: 1.2;
-            color: white;
-            margin-bottom: 32px;
-            letter-spacing: -0.01em;
+            line-height: 1;
+            white-space: pre-wrap;
         }
-
-        .final-description {
-            margin-bottom: 40px;
-        }
-
-        .final-description p {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1.4;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        .final-description p:last-child {
-            margin-bottom: 0;
-        }
-
-        .final-cta-btn {
+        
+        .description-section {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
             width: 100%;
-            max-width: 252px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            border: 2px solid #D2CFFF;
-            color: white;
-            border-radius: 24px;
-            font-family: 'Inter', sans-serif;
+        }
+        
+        .description {
+            width: 576px;
+            color: #e2e5f8;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: normal;
+            white-space: pre-wrap;
+        }
+        
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 21px;
+            height: 112px;
+        }
+        
+        .stock-container {
+            width: 332px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .progress-wrapper {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(75, 69, 191, 0.2);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .progress-fill {
+            position: absolute;
+            width: 3%;
+            height: 12px;
+            background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 50%, #C4B5FD 100%);
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(124, 58, 237, 0.6);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 8px rgba(124, 58, 237, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 12px rgba(124, 58, 237, 0.9);
+            }
+        }
+        
+        .stock-text {
+            width: 100%;
+            color: #e2e5f8;
             font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            margin: 0 0 60px 0; /* Alineado a la izquierda, sin auto */
-            box-shadow: 0 4px 20px rgba(75, 69, 191, 0.3);
-            padding: 0 40px;
-            white-space: nowrap;
-            background-size: 200% 100%;
-            animation: gradientShift 3s ease-in-out infinite alternate;
+            font-weight: 500;
+            line-height: normal;
+            white-space: pre-wrap;
         }
-
-        .final-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(75, 69, 191, 0.4);
-        }
-
-        .final-cta-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Footer dentro de la sección final */
-        .final-footer {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .final-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .final-logo img {
-            height: 27.5px;
-            width: auto;
-            object-fit: contain;
-            /* Color blanco para el logo en fondo oscuro */
-            filter: brightness(0) invert(1);
-            background-color: white;
-            -webkit-mask: url('https://i.imgur.com/9gFD9c3.png') no-repeat center;
-            -webkit-mask-size: contain;
-            mask: url('https://i.imgur.com/9gFD9c3.png') no-repeat center;
-            mask-size: contain;
-        }
-
-        .final-copyright {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .final-copyright p {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
+        
+        .payment-info {
+            width: 100%;
+            color: #e2e5f8;
+            font-size: 16px;
             font-weight: 400;
-            line-height: 1.3;
-            color: rgba(255, 255, 255, 0.7);
-            margin: 0;
-            letter-spacing: -0.01em;
+            line-height: normal;
+            white-space: pre-wrap;
         }
-
-        .final-contact {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+        
+        /* MOBILE VERSION */
+        .mobile-container {
+            display: none;
         }
-
-        .instagram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            color: rgba(255, 255, 255, 0.7);
-            transition: color 0.3s ease;
-            flex-shrink: 0;
-            margin-top: 2px; /* Pequeño ajuste para alineación visual */
-        }
-
-        .instagram-link:hover {
-            color: rgba(255, 255, 255, 1);
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .contact-info p {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 1.3;
-            color: rgba(255, 255, 255, 0.7);
-            margin: 0;
-            letter-spacing: -0.01em;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 480px) {
-            .hero-mobile {
-                padding: 70px 20px 30px 20px;
+        
+        @media (max-width: 768px) {
+            .desktop-container {
+                display: none;
             }
-
-            .hero-content {
-                height: calc(100vh - 100px);
-                max-width: 100%;
-                padding-top: 0; /* Sin padding-top */
+            
+            .mobile-container {
+                display: block;
+                width: 100%;
+                background: linear-gradient(180deg, #0a1820 0%, #050a0f 100%);
+                min-height: 100vh;
             }
-
-            .hero-bottom-content {
-                margin-bottom: 20px; /* Reducido proporcionalmente para mobile */
+            
+            .mobile-hero {
+                position: relative;
+                width: 100%;
+                height: 864px;
+                overflow: hidden;
+                background: linear-gradient(180deg, #0a1820 0%, #050a0f 100%);
             }
-
-            .hero-title {
-                font-size: 22px;
-                margin-bottom: 6px;
+            
+            .mobile-hero-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
-
-            .hero-subtitle {
-                font-size: 15px;
+            
+            .mobile-logo {
+                position: absolute;
+                left: 25px;
+                top: 34px;
+                width: 46px;
+                height: 26px;
+                opacity: 0.2;
             }
-
-            .hero-cta-btn {
-                height: 44px;
-                font-size: 15px;
-                max-width: 252px; /* Mantener ancho reducido en mobile */
-                margin-bottom: 20px;
+            
+            .mobile-hero-content {
+                position: absolute;
+                left: 34px;
+                top: 430px;
+                width: 341px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
             }
-
-            .stock-container {
-                max-width: 250px; /* Mantener ancho reducido en mobile */
+            
+            .mobile-title {
+                font-family: 'Inter', sans-serif;
+                font-size: 28px;
+                font-weight: 600;
+                line-height: 1.17;
+                color: #fbfdfb;
+                white-space: pre-wrap;
             }
-
-            .hero-pricing {
-                font-size: 11px;
+            
+            .mobile-cta-wrapper {
+                width: 260px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-
-            .mobile-carousel-component {
-                --carousel-padding-top: 60px;
-                --carousel-padding-bottom: 40px;
-                --image-height: 480px;
-                --image-max-width: calc(100vw - 24px);
-                --arrow-size: 44px;
-                --arrow-gap: 16px;
-                --arrow-bottom-position: 66px;
-                --arrow-right-position: 40px;
-            }
-
-            .content-headline {
-                font-size: 22px;
-            }
-
-            .content-body {
-                font-size: 15px;
-                line-height: 1.3;
-            }
-
-            .nav-arrow svg {
-                width: 18px;
-                height: 18px;
-            }
-
-            /* Responsive adjustments para la sección final */
-            .final-section {
-                padding: 50px 20px 30px 20px;
-            }
-
-            .final-container {
-                max-width: 100%;
-            }
-
-            .final-title {
-                font-size: 18px;
-                margin-bottom: 28px;
-            }
-
-            .final-description {
-                margin-bottom: 36px;
-            }
-
-            .final-description p {
-                font-size: 13px;
-                margin-bottom: 14px;
-            }
-
-            .final-cta-btn {
-                height: 44px;
-                font-size: 15px;
-                margin-bottom: 50px;
-            }
-
-            .final-footer {
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .hero-content {
-                height: calc(100vh - 80px); /* Ajuste para pantallas muy pequeñas */
-            }
-
-            .hero-bottom-content {
-                margin-bottom: 20px; /* Margen menor en pantallas muy pequeñas */
-            }
-
-            .hero-title {
-                font-size: 20px;
-                margin-bottom: 4px;
-            }
-
-            .hero-subtitle {
-                font-size: 14px;
-            }
-
-            .mobile-carousel-component {
-                --image-height: 420px;
-                --arrow-size: 40px;
-                --arrow-gap: 14px;
-                --arrow-bottom-position: 62px;
-                --arrow-right-position: 38px;
-            }
-
-            .content-headline {
-                font-size: 20px;
-            }
-
-            .content-body {
-                font-size: 14px;
-            }
-
-            .nav-arrow svg {
-                width: 16px;
-                height: 16px;
-            }
-
-            .final-section {
-                padding: 40px 20px 25px 20px;
-            }
-
-            .final-title {
+            
+            .mobile-cta {
+                background: #4B45BF;
+                border: none;
+                border-radius: 48px;
+                width: 263px;
+                height: 53px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 font-size: 16px;
-                margin-bottom: 24px;
+                font-weight: 500;
+                color: white;
+                cursor: pointer;
+                text-decoration: none;
+                transition: background 0.3s;
             }
-
+            
+            .mobile-cta:hover {
+                background: #5a52d5;
+            }
+            
+            .mobile-stock {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                width: 332px;
+            }
+            
+            .mobile-progress-wrapper {
+                display: flex;
+                flex-direction: column;
+                width: 244px;
+                position: relative;
+            }
+            
+            .mobile-progress-bar {
+                width: 100%;
+                height: 10px;
+                background: rgba(75, 69, 191, 0.2);
+                border-radius: 12px;
+                position: relative;
+                overflow: hidden;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+            
+            .mobile-progress-fill {
+                position: absolute;
+                width: 3%;
+                height: 10px;
+                background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 50%, #C4B5FD 100%);
+                border-radius: 12px;
+                box-shadow: 0 0 8px rgba(124, 58, 237, 0.6);
+                animation: mobilePulse 2s ease-in-out infinite;
+            }
+            
+            @keyframes mobilePulse {
+                0%, 100% {
+                    box-shadow: 0 0 8px rgba(124, 58, 237, 0.6);
+                }
+                50% {
+                    box-shadow: 0 0 12px rgba(124, 58, 237, 0.9);
+                }
+            }
+            
+            .mobile-stock-text {
+                font-size: 16px;
+                color: #fbfdfb;
+                line-height: normal;
+                white-space: pre-wrap;
+            }
+            
+            .mobile-payment {
+                font-size: 16px;
+                color: #fbfdfb;
+                line-height: normal;
+                white-space: pre-wrap;
+            }
+            
+            /* CAROUSEL SECTION */
+            .mobile-carousel-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 61px;
+                padding: 0 6px;
+                margin-top: 7px;
+            }
+            
+            .carousel-container {
+                position: relative;
+                width: 100%;
+                max-width: 382px;
+                height: 570px;
+                border-radius: 18px;
+                overflow: hidden;
+            }
+            
+            .carousel-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .carousel-arrows {
+                position: absolute;
+                bottom: 18px;
+                right: 15px;
+                display: flex;
+                gap: 12px;
+            }
+            
+            .arrow-btn {
+                width: 48px;
+                height: 48px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                backdrop-filter: blur(20px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            
+            .carousel-content {
+                width: 100%;
+                max-width: 321px;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                color: #fbfdfb;
+            }
+            
+            .carousel-title {
+                font-size: 24px;
+                font-weight: 600;
+                line-height: normal;
+                white-space: pre-wrap;
+            }
+            
+            .carousel-text {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: normal;
+                white-space: pre-wrap;
+            }
+            
+            /* FINAL SECTION */
+            .mobile-final-section {
+                padding: 0 34px;
+                margin-top: 80px;
+                display: flex;
+                flex-direction: column;
+                gap: 100px;
+                padding-bottom: 60px;
+            }
+            
+            .final-content {
+                display: flex;
+                flex-direction: column;
+                gap: 54px;
+                width: 100%;
+                max-width: 321px;
+            }
+            
+            .final-text-section {
+                display: flex;
+                flex-direction: column;
+                gap: 34px;
+                color: #fbfdfb;
+            }
+            
+            .final-title {
+                font-size: 24px;
+                font-weight: 600;
+                line-height: 1.2;
+                white-space: normal;
+            }
+            
             .final-description {
-                margin-bottom: 32px;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+                white-space: normal;
+                word-wrap: break-word;
             }
-
-            .final-description p {
-                font-size: 12px;
-                margin-bottom: 12px;
+            
+            .final-cta-container {
+                width: 297px;
+                height: 53px;
             }
-
-            .final-cta-btn {
-                font-size: 14px;
-                margin-bottom: 40px;
+            
+            .final-cta {
+                background: #4B45BF;
+                border: none;
+                border-radius: 48px;
+                width: 263px;
+                height: 53px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                font-weight: 500;
+                color: white;
+                cursor: pointer;
+                text-decoration: none;
+                transition: background 0.3s;
             }
-
-            .final-footer {
-                gap: 18px;
+            
+            .final-cta:hover {
+                background: #5a52d5;
             }
-        }
-
-        /* High DPI Display Support */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .product-image-container img,
-            .hero-image-container img {
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
+            
+            .footer {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                padding-left: 15px;
             }
-        }
-
-        /* Animation for smooth content changes */
-        @keyframes fadeInContent {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
+            
+            .footer-divider {
+                width: 100%;
+                max-width: 350px;
+                height: 0;
+                border-top: 0.5px solid rgba(255, 255, 255, 0.2);
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .footer-content {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
             }
-        }
-
-        .content-animate {
-            animation: fadeInContent 0.4s ease-out;
+            
+            .footer-logo-section {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 10px 10px 0;
+            }
+            
+            .footer-logo {
+                width: 46px;
+                height: 25px;
+                opacity: 0.6;
+            }
+            
+            .footer-copyright {
+                font-size: 16px;
+                color: #97a5ac;
+                line-height: 1.4;
+                white-space: normal;
+            }
+            
+            .footer-contact {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                padding-right: 25px;
+            }
+            
+            .footer-instagram-row {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .footer-instagram-icon {
+                width: 14px;
+                height: 14px;
+            }
+            
+            .footer-text {
+                font-size: 16px;
+                color: #97a5ac;
+                line-height: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header Mobile -->
-    <header class="header">
-        <div class="logo">
-            <img src="https://i.imgur.com/9gFD9c3.png" alt="Ovi Logo">
-        </div>
+    <!-- DESKTOP VERSION -->
+    <div class="desktop-container">
+        <img src="https://i.imgur.com/rH6okvj.png" alt="E-bike background" class="bg-image">
+        <img src="https://i.imgur.com/fUGZ63r.png" alt="E-bike background mobile" class="bg-image-mobile">
         
-        <div class="header-right">
-            <a href="https://wa.me/+59899977105?text=Hola,%20me%20interesa%20agendar%20un%20test%20drive%20de%20la%20Coswheel%20T20" target="_blank" class="cta-btn">Test Drive</a>
-        </div>
-    </header>
-
-    <!-- HERO MOBILE SECTION -->
-    <section class="hero-mobile">
-        <div class="hero-content">
-            <!-- Logo en Hero - Solo logo, sin botón -->
-            <div class="hero-logo" id="heroLogo">
-                <div class="logo">
-                    <img src="https://i.imgur.com/9gFD9c3.png" alt="Ovi Logo">
-                </div>
-            </div>
-            
-            <div class="hero-top-content">
-                <h1 class="hero-title">Coswheel T20</h1>
-                <p class="hero-subtitle">La e-bike premium.<br>Diseñada para ir más&nbsp;lejos.</p>
-            </div>
-            
-            <div class="hero-bottom-content">
-                <div class="hero-cta-container">
-                    <!-- 1. Botón -->
-                    <a href="https://wa.me/+59899977105?text=Hola,%20me%20interesa%20comprar%20la%20Coswheel%20T20" target="_blank" class="hero-cta-btn">
-                        Comprar Coswheel T20
-                    </a>
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 702.99 385.56">
+            <path class="cls-1" d="M33.45,197.15c0-50.64,46.47-92.31,128.21-92.31s127.56,41.67,127.56,92.31-47.12,92.31-127.56,92.31S33.45,247.47,33.45,197.15ZM201.25,197.15c0-20.83-10.11-37.82-39.6-37.82s-40.24,16.99-40.24,37.82,10.43,37.82,40.24,37.82,39.6-16.67,39.6-37.82Z"/>
+            <path class="cls-1" d="M279.21,117.02v-5.77h82.37l42.31,105.13h12.82l41.35-105.13h75.32v5.77l-77.56,166.03h-95.83l-80.77-166.03Z"/>
+            <path class="cls-1" d="M544.31,69.9c0-17.63,18.27-29.81,43.91-29.81s43.91,12.18,43.91,29.81-17.95,29.81-43.91,29.81-43.91-12.5-43.91-29.81ZM549.75,111.25h76.92v171.8h-76.92V111.25Z"/>
+        </svg>
+        
+        <p class="product-tag">Producto lanzamiento: E-bike Coswheel T20</p>
+        
+        <div class="main-content">
+            <div class="left-section">
+                <a href="https://wa.me/+59899977195" class="cta-button" style="text-decoration: none;">
+                    <p>Pedir ahora a 2099 U$S*</p>
+                </a>
+                
+                <div class="text-content">
+                    <h1>Presentamos la 
+e-bike todo terreno</h1>
                     
-                    <!-- 2. Barra de Stock -->
-                    <div class="stock-container">
-                        <div class="stock-bar-wrapper">
-                            <div class="stock-bar-base"></div>
-                            <div class="stock-bar-progress"></div>
-                        </div>
-                        <!-- 3. Texto de unidades disponibles -->
-                        <div class="stock-text">15/15 e-bikes&nbsp;disponibles</div>
-                    </div>
-                    
-                    <!-- 4. Precio -->
-                    <p class="hero-pricing">2199 U$S o 90 US$/mes en 24&nbsp;meses<br>con Mercado&nbsp;Pago</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPONENTE 1: Motor -->
-    <section class="mobile-carousel-component" id="carousel1">
-        <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- FOTOS DEL CARRUSEL 1 -->
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/WTAjdst.png" alt="E-Bike Coswheel T20 - Motor 1" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/e5pKWgU.png" alt="E-Bike Coswheel T20 - Motor 2" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/RYTyBFs.png" alt="E-Bike Coswheel T20 - Motor 3" loading="lazy">
+                    <div class="description-section">
+                        <p class="description">Diseñada para acompañarte en cualquier camino. 
+Con motor potente, batería de alta duración, suspensión y neumáticos anchos, combina fuerza, autonomía y confort para que disfrutes cada kilómetro al máximo.</p>
+                        
+                        <div class="info-section">
+                            <div class="stock-container">
+                                <div class="progress-wrapper">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"></div>
+                                    </div>
+                                </div>
+                                <p class="stock-text">13/15 bikes disponibles
+ </p>
+                            </div>
+                            
+                            <p class="payment-info">2099 U$S o 90 U$S/ mes en 24 meses con Mercado Pago
+*Promoción válida por lanzamiento durante el mes de octubre. 
+ </p>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="carousel-navigation">
-                <button class="nav-arrow prev-arrow" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="nav-arrow next-arrow" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-            </div>
         </div>
-        
-        <div class="carousel-content">
-            <div class="content-eyebrow">Motor potente</div>
-            <h2 class="content-headline">Potencia sin&nbsp;límites</h2>
-            <p class="content-body">Desde el primer giro, la fuerza se siente en cada pedaleo. Un motor de hasta 1000W que responde al instante y te impulsa con&nbsp;naturalidad.</p>
-        </div>
-    </section>
+    </div>
 
-    <!-- COMPONENTE 2: Batería -->
-    <section class="mobile-carousel-component" id="carousel2">
-        <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- FOTOS DEL CARRUSEL 2 -->
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/ZtUjw0m.png" alt="E-Bike Coswheel T20 - Batería 1" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/SoCq7Mv.png" alt="E-Bike Coswheel T20 - Batería 2" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/8P1ZHbo.png" alt="E-Bike Coswheel T20 - Batería 3" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/wkpfD8n.png" alt="E-Bike Coswheel T20 - Batería 4" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- MOBILE VERSION -->
+    <div class="mobile-container">
+        <!-- HERO SECTION -->
+        <div class="mobile-hero">
+            <img src="https://i.imgur.com/fUGZ63r.png" alt="E-bike mobile" class="mobile-hero-bg">
+            <img src="https://i.imgur.com/9gFD9c3.png" alt="OVI Logo" class="mobile-logo">
             
-            <div class="carousel-navigation">
-                <button class="nav-arrow prev-arrow" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="nav-arrow next-arrow" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <div class="carousel-content">
-            <div class="content-eyebrow">Autonomía</div>
-            <h2 class="content-headline">Batería de alto<br>rendimiento</h2>
-            <p class="content-body">Hasta <strong>113 km con asistencia</strong> y <strong>70 km sin asistencia</strong>. Energía confiable que te acompaña en la ciudad o en tus salidas más largas, siempre a tu&nbsp;ritmo.</p>
-        </div>
-    </section>
-
-    <!-- COMPONENTE 3: Suspensión -->
-    <section class="mobile-carousel-component" id="carousel3">
-        <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- FOTOS DEL CARRUSEL 3 -->
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/qDEDbZc.png" alt="E-Bike Coswheel T20 - Suspensión 1" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/5Mpr8gF.jpeg" alt="E-Bike Coswheel T20 - Suspensión 2" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/g7Fk0sF.png" alt="E-Bike Coswheel T20 - Suspensión 3" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-navigation">
-                <button class="nav-arrow prev-arrow" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="nav-arrow next-arrow" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <div class="carousel-content">
-            <div class="content-eyebrow">Suspensión premium</div>
-            <h2 class="content-headline">Suspensión central<br>y&nbsp;delantera</h2>
-            <p class="content-body">Subís y lo sentís enseguida. Cada bache desaparece, cada curva fluye natural. Estabilidad, suavidad y control en cada&nbsp;trayecto.</p>
-        </div>
-    </section>
-
-    <!-- COMPONENTE 4: Conectividad -->
-    <section class="mobile-carousel-component" id="carousel4">
-        <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- FOTOS DEL CARRUSEL 4 -->
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/OLSurQF.png" alt="E-Bike Coswheel T20 - Frenos 1" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/9ywec8z.png" alt="E-Bike Coswheel T20 - Frenos 2" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/QWWADXO.png" alt="E-Bike Coswheel T20 - Frenos 3" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-navigation">
-                <button class="nav-arrow prev-arrow" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="nav-arrow next-arrow" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <div class="carousel-content">
-            <div class="content-eyebrow">Conectividad inteligente</div>
-            <h2 class="content-headline">Frenos de disco delanteros<br>y&nbsp;traseros</h2>
-            <p class="content-body">Discos de 160 mm que ofrecen seguridad y precisión en cada frenada, sin importar el&nbsp;terreno.</p>
-        </div>
-    </section>
-
-    <!-- COMPONENTE 5: Diseño -->
-    <section class="mobile-carousel-component" id="carousel5">
-        <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- FOTOS DEL CARRUSEL 5 -->
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/RL2DrU9.png" alt="E-Bike Coswheel T20 - Diseño 1" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/7Ri6Vm8.png" alt="E-Bike Coswheel T20 - Diseño 2" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/cWRkJWF.png" alt="E-Bike Coswheel T20 - Diseño 3" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-navigation">
-                <button class="nav-arrow prev-arrow" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="nav-arrow next-arrow" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <div class="carousel-content">
-            <div class="content-eyebrow">Diseño</div>
-            <h2 class="content-headline">Minimalismo y robustez<br>en&nbsp;equilibrio</h2>
-            <p class="content-body">Líneas limpias, materiales que duran y una estética que habla por sí sola. Cada detalle pensado para que manejar se sienta simple, cómodo y naturalmente&nbsp;elegante.</p>
-        </div>
-    </section>
-
-    <!-- COMPONENTE 6: Movilidad -->
-    <section class="mobile-carousel-component" id="carousel6">
-        <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- FOTOS DEL CARRUSEL 6 -->
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/gbHG0RD.png" alt="E-Bike Coswheel T20 - Componentes 1" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="product-image-container">
-                            <img src="https://i.imgur.com/X80EEXJ.png" alt="E-Bike Coswheel T20 - Componentes 2" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-navigation">
-                <button class="nav-arrow prev-arrow" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="nav-arrow next-arrow" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <div class="carousel-content">
-            <div class="content-eyebrow">Componentes premium</div>
-            <h2 class="content-headline">Un marco hecho<br>para&nbsp;durar</h2>
-            <p class="content-body">Aleación de aluminio 6061-T6, formada hidráulicamente y probada más de 30.000 veces. Ligero, robusto y diseñado para acompañarte en cada&nbsp;trayecto.</p>
-        </div>
-    </section>
-
-    <!-- SECCIÓN FINAL - CÓMO COMPRAR -->
-    <section class="final-section">
-        <div class="final-container">
-            <!-- Título principal -->
-            <h2 class="final-title">¿Cómo hago para comprar<br>la Coswheel T20?</h2>
-            
-            <!-- Texto descriptivo -->
-            <div class="final-description">
-                <p>Es muy simple: tocando el botón<br>"Comprar" vas directo a nuestro WhatsApp.</p>
-                <p>Por ahí coordinamos la compra y el medio<br>de pago que te quede más cómodo.</p>
-                <p>Estamos en Cordón, Montevideo.<br>Si querés, podés venir a probar la<br>Coswheel T20 antes de decidirte. 🚀✨</p>
-            </div>
-            
-            <!-- Botón de comprar -->
-            <a href="https://wa.me/+59899977105?text=Hola,%20me%20interesa%20comprar%20la%20Coswheel%20T20" target="_blank" class="final-cta-btn">
-                Comprar Coswheel T20
-            </a>
-            
-            <!-- Footer -->
-            <div class="final-footer">
-                <!-- Logo -->
-                <div class="final-logo">
-                    <img src="https://i.imgur.com/9gFD9c3.png" alt="Ovi Logo">
+            <div class="mobile-hero-content">
+                <h1 class="mobile-title">Presentamos la 
+e-bike todo terreno</h1>
+                
+                <div class="mobile-cta-wrapper">
+                    <a href="https://wa.me/+59899977195" class="mobile-cta">Pedir ahora por 2099 U$S</a>
                 </div>
                 
-                <!-- Copyright y derechos -->
-                <div class="final-copyright">
-                    <p>©2025 OVI Uruguay</p>
-                    <p>Todos los derechos reservados</p>
+                <div class="mobile-stock">
+                    <div class="mobile-progress-wrapper">
+                        <div class="mobile-progress-bar">
+                            <div class="mobile-progress-fill"></div>
+                        </div>
+                    </div>
+                    <p class="mobile-stock-text">15/15 bikes disponibles
+ </p>
                 </div>
                 
-                <!-- Información de contacto y redes -->
-                <div class="final-contact">
-                    <a href="https://instagram.com/ovi.uru" target="_blank" class="instagram-link" aria-label="Instagram OVI Uruguay">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                <p class="mobile-payment">2099 U$S o 90 U$S/ mes en 24 meses con Mercado Pago.
+ 
+*Promoción lanzamiento válida durante octubre. 
+ </p>
+            </div>
+        </div>
+
+        <!-- CAROUSEL SECTION -->
+        <div class="mobile-carousel-section">
+            <div class="carousel-container">
+                <img src="https://i.imgur.com/qDEDbZc.png" alt="E-bike detail" class="carousel-image" id="carouselImage">
+                <div class="carousel-arrows">
+                    <button class="arrow-btn" onclick="prevImage()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <polyline points="15,18 9,12 15,6"></polyline>
                         </svg>
-                    </a>
-                    <div class="contact-info">
-                        <p>ovi.uruguay</p>
-                        <p>Montevideo</p>
-                        <p>Uruguay</p>
+                    </button>
+                    <button class="arrow-btn" onclick="nextImage()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="carousel-content">
+                <h2 class="carousel-title">Diseñada para acompañarte en cualquier camino. </h2>
+                <p class="carousel-text">Con motor potente, batería de alta duración, suspensión y neumáticos anchos, combina fuerza, autonomía y confort para que disfrutes cada kilómetro al máximo: hasta 113 km con asistencia y 70 km sin asistencia.</p>
+            </div>
+        </div>
+
+        <!-- FINAL SECTION -->
+        <div class="mobile-final-section">
+            <div class="final-content">
+                <div class="final-text-section">
+                    <h2 class="final-title">¿Cómo hago para comprar la Coswhell T20?</h2>
+                    <p class="final-description">Es muy simple: tocando el botón "Pedir ahora" vas directo a nuestro WhatsApp.<br><br>Por ahí coordinamos la compra y el medio de pago que te quede más cómodo.<br><br>Estamos en Cordón, Montevideo. Si querés, podés venir a probar la Coswheel T20 antes de decidirte. 🚴‍♂️✨</p>
+                </div>
+                
+                <div class="final-cta-container">
+                    <a href="https://wa.me/+59899977195" class="final-cta">Pedir ahora por 2099 U$S</a>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div class="footer-divider"></div>
+                <div class="footer-content">
+                    <div class="footer-logo-section">
+                        <img src="https://i.imgur.com/9gFD9c3.png" alt="OVI Logo" class="footer-logo">
+                        <p class="footer-copyright">©2025 OVI Uruguay<br>Todos los derechos reservados</p>
+                    </div>
+                    <div class="footer-contact">
+                        <div class="footer-instagram-row">
+                            <svg class="footer-instagram-icon" viewBox="0 0 24 24" fill="none" stroke="#97a5ac" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                            <p class="footer-text">ovi.uruguay</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <script>
-        // MOBILE CAROUSEL CLASS - Reutilizable
-        class MobileCarouselComponent {
-            constructor(containerId) {
-                this.container = document.getElementById(containerId);
-                if (!this.container) return;
-                
-                this.track = this.container.querySelector('.carousel-track');
-                this.wrapper = this.container.querySelector('.carousel-wrapper');
-                this.content = this.container.querySelector('.carousel-content');
-                this.prevBtn = this.container.querySelector('.prev-arrow');
-                this.nextBtn = this.container.querySelector('.next-arrow');
-                
-                this.currentIndex = 0;
-                this.totalSlides = this.track.children.length;
-                this.isAnimating = false;
-                this.autoplayActive = false; // Nueva propiedad para controlar autoplay
-                
-                // Touch/swipe properties
-                this.isDragging = false;
-                this.startX = 0;
-                this.currentX = 0;
-                this.initialTransform = 0;
-                this.threshold = 50;
-                
-                this.init();
-            }
-            
-            init() {
-                this.updateView();
-                this.setupEventListeners();
-                this.preloadImages();
-                // NO iniciar autoplay automáticamente
-            }
-            
-            setupEventListeners() {
-                // Button navigation
-                if (this.prevBtn) {
-                    this.prevBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.prev();
-                    });
-                }
-                
-                if (this.nextBtn) {
-                    this.nextBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.next();
-                    });
-                }
-                
-                // Touch/Mouse events
-                this.wrapper.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: false });
-                this.wrapper.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
-                this.wrapper.addEventListener('touchend', (e) => this.handleTouchEnd(e));
-                
-                this.wrapper.addEventListener('mousedown', (e) => this.handleMouseStart(e));
-                this.wrapper.addEventListener('mousemove', (e) => this.handleMouseMove(e));
-                this.wrapper.addEventListener('mouseup', (e) => this.handleMouseEnd(e));
-                this.wrapper.addEventListener('mouseleave', (e) => this.handleMouseEnd(e));
-            }
-            
-            // Touch Events
-            handleTouchStart(e) {
-                if (this.isAnimating) return;
-                if (e.target.closest('.nav-arrow')) return;
-                
-                this.isDragging = true;
-                this.startX = e.touches[0].clientX;
-                this.initialTransform = -(this.currentIndex * 100);
-                this.track.classList.add('dragging');
-                this.stopAutoplay();
-            }
-            
-            handleTouchMove(e) {
-                if (!this.isDragging) return;
-                
-                e.preventDefault();
-                this.currentX = e.touches[0].clientX;
-                const diffX = this.currentX - this.startX;
-                const movePercent = (diffX / this.wrapper.offsetWidth) * 100;
-                const dampening = 0.7;
-                const newTransform = this.initialTransform + (movePercent * dampening);
-                
-                const maxTransform = 0;
-                const minTransform = -((this.totalSlides - 1) * 100);
-                
-                if (newTransform > maxTransform) {
-                    const overflow = (newTransform - maxTransform) * 0.3;
-                    this.track.style.transform = `translateX(${maxTransform + overflow}%)`;
-                } else if (newTransform < minTransform) {
-                    const overflow = (newTransform - minTransform) * 0.3;
-                    this.track.style.transform = `translateX(${minTransform + overflow}%)`;
-                } else {
-                    this.track.style.transform = `translateX(${newTransform}%)`;
-                }
-            }
-            
-            handleTouchEnd(e) {
-                if (!this.isDragging) return;
-                
-                this.isDragging = false;
-                this.track.classList.remove('dragging');
-                
-                const diffX = this.currentX - this.startX;
-                const threshold = this.wrapper.offsetWidth * 0.15;
-                const velocity = Math.abs(diffX) / 300;
-                
-                if (Math.abs(diffX) > threshold || velocity > 0.5) {
-                    if (diffX > 0 && this.currentIndex > 0) {
-                        this.prev();
-                    } else if (diffX < 0 && this.currentIndex < this.totalSlides - 1) {
-                        this.next();
-                    } else {
-                        this.updateView();
-                    }
-                } else {
-                    this.updateView();
-                }
-                
-                this.resetAutoplay();
-            }
-            
-            // Mouse Events
-            handleMouseStart(e) {
-                if (e.target.closest('.nav-arrow')) return;
-                e.preventDefault();
-                this.handleTouchStart({ touches: [{ clientX: e.clientX }] });
-            }
-            
-            handleMouseMove(e) {
-                if (!this.isDragging) return;
-                this.handleTouchMove({ 
-                    touches: [{ clientX: e.clientX }],
-                    preventDefault: () => {}
-                });
-            }
-            
-            handleMouseEnd(e) {
-                if (!this.isDragging) return;
-                this.currentX = e.clientX;
-                this.handleTouchEnd();
-            }
-            
-            // Navigation
-            next() {
-                if (this.isAnimating) return;
-                
-                if (this.currentIndex >= this.totalSlides - 1) {
-                    this.currentIndex = 0;
-                } else {
-                    this.currentIndex++;
-                }
-                this.updateView();
-                this.resetAutoplay();
-            }
-            
-            prev() {
-                if (this.isAnimating) return;
-                
-                if (this.currentIndex <= 0) {
-                    this.currentIndex = this.totalSlides - 1;
-                } else {
-                    this.currentIndex--;
-                }
-                this.updateView();
-                this.resetAutoplay();
-            }
-            
-            updateView() {
-                this.isAnimating = true;
-                
-                const translateX = -(this.currentIndex * 100);
-                this.track.style.transform = `translateX(${translateX}%)`;
-                
-                if (this.prevBtn) {
-                    this.prevBtn.disabled = false;
-                }
-                
-                if (this.nextBtn) {
-                    this.nextBtn.disabled = false;
-                }
-                
-                setTimeout(() => {
-                    this.isAnimating = false;
-                }, 600);
-            }
-            
-            preloadImages() {
-                const images = this.container.querySelectorAll('img');
-                images.forEach(img => {
-                    if (img.src) {
-                        const preloadImg = new Image();
-                        preloadImg.src = img.src;
-                    }
-                });
-            }
-            
-            // Auto-play methods modificados
-            startAutoplay() {
-                if (!this.autoplayActive) return; // Solo iniciar si está activo
-                this.autoplayInterval = setInterval(() => {
-                    this.next();
-                }, 5000);
-            }
-            
-            activateAutoplay() {
-                this.autoplayActive = true;
-                this.startAutoplay();
-            }
-            
-            deactivateAutoplay() {
-                this.autoplayActive = false;
-                this.stopAutoplay();
-            }
-            
-            resetAutoplay() {
-                if (!this.autoplayActive) return; // Solo resetear si está activo
-                clearInterval(this.autoplayInterval);
-                this.startAutoplay();
-            }
-            
-            stopAutoplay() {
-                clearInterval(this.autoplayInterval);
+        const carouselImages = [
+            'https://i.imgur.com/qDEDbZc.png',
+            'https://i.imgur.com/OLSurQF.png',
+            'https://i.imgur.com/g7Fk0sF.png',
+            'https://i.imgur.com/RL2DrU9.png',
+            'https://i.imgur.com/7Ri6Vm8.png',
+            'https://i.imgur.com/WTAjdst.png',
+            'https://i.imgur.com/e5pKWgU.png',
+            'https://i.imgur.com/RYTyBFs.png',
+            'https://i.imgur.com/HjMaYiC.png',
+            'https://i.imgur.com/gbHG0RD.png'
+        ];
+        
+        let currentImageIndex = 0;
+        
+        function updateCarouselImage() {
+            const imgElement = document.getElementById('carouselImage');
+            if (imgElement) {
+                imgElement.src = carouselImages[currentImageIndex];
             }
         }
-
-        // INICIALIZAR COMPONENTES
-        document.addEventListener('DOMContentLoaded', () => {
-            // Crear instancia para cada carrusel
-            window.carousel1 = new MobileCarouselComponent('carousel1');
-            window.carousel2 = new MobileCarouselComponent('carousel2');
-            window.carousel3 = new MobileCarouselComponent('carousel3');
-            window.carousel4 = new MobileCarouselComponent('carousel4');
-            window.carousel5 = new MobileCarouselComponent('carousel5');
-            window.carousel6 = new MobileCarouselComponent('carousel6');
-            
-            // Inicializar scroll header/logo functionality
-            initScrollHeaderToggle();
-            
-            // Inicializar sistema de autoplay por sección
-            initCarouselAutoplayOnScroll();
-        });
-
-        // SISTEMA DE AUTOPLAY POR SECCIÓN - Intersection Observer
-        function initCarouselAutoplayOnScroll() {
-            const carousels = [
-                { element: document.getElementById('carousel1'), instance: window.carousel1 },
-                { element: document.getElementById('carousel2'), instance: window.carousel2 },
-                { element: document.getElementById('carousel3'), instance: window.carousel3 },
-                { element: document.getElementById('carousel4'), instance: window.carousel4 },
-                { element: document.getElementById('carousel5'), instance: window.carousel5 },
-                { element: document.getElementById('carousel6'), instance: window.carousel6 }
-            ];
-
-            // Configuración del Intersection Observer
-            const observerOptions = {
-                root: null, // viewport
-                rootMargin: '-20% 0px -20% 0px', // Activar cuando está 20% dentro del viewport
-                threshold: 0.3 // Al menos 30% del carrusel debe ser visible
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const carouselData = carousels.find(c => c.element === entry.target);
-                    if (carouselData && carouselData.instance) {
-                        if (entry.isIntersecting) {
-                            // Carrusel entra en viewport - activar autoplay
-                            carouselData.instance.activateAutoplay();
-                        } else {
-                            // Carrusel sale del viewport - desactivar autoplay
-                            carouselData.instance.deactivateAutoplay();
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            // Observar cada carrusel
-            carousels.forEach(carousel => {
-                if (carousel.element && carousel.instance) {
-                    observer.observe(carousel.element);
-                }
-            });
+        
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+            updateCarouselImage();
         }
-
-        // FUNCIONALIDAD DE ALTERNANCIA HEADER/LOGO EN HERO - Scroll gradual
-        function initScrollHeaderToggle() {
-            const header = document.querySelector('.header');
-            const heroLogo = document.getElementById('heroLogo');
-            const heroSection = document.querySelector('.hero-mobile');
-            
-            if (!header || !heroLogo || !heroSection) return;
-            
-            let ticking = false;
-            
-            function updateHeaderVisibility() {
-                const heroRect = heroSection.getBoundingClientRect();
-                const heroHeight = heroRect.height;
-                const heroTop = heroRect.top;
-                const heroBottom = heroRect.bottom;
-                
-                // Calcular el progreso del scroll del hero (de 0 a 1)
-                let scrollProgress = 0;
-                
-                if (heroBottom <= 0) {
-                    // Hero completamente fuera de vista
-                    scrollProgress = 1;
-                } else if (heroTop < 0) {
-                    // Hero parcialmente fuera de vista - calcular progreso
-                    scrollProgress = Math.abs(heroTop) / heroHeight;
-                    scrollProgress = Math.min(scrollProgress, 1);
-                }
-                
-                // Aplicar la posición del header basada en el progreso del scroll
-                if (scrollProgress === 0) {
-                    // Hero completamente visible - logo en hero visible, header oculto
-                    heroLogo.style.opacity = '1';
-                    header.style.top = '-56px';
-                    header.style.opacity = '0';
-                } else if (scrollProgress === 1) {
-                    // Hero completamente oculto - header completamente visible
-                    heroLogo.style.opacity = '0';
-                    header.style.top = '12px';
-                    header.style.opacity = '1';
-                } else {
-                    // Transición gradual basada en scroll
-                    heroLogo.style.opacity = (1 - scrollProgress).toString();
-                    
-                    // Header se mueve gradualmente desde -56px hasta 12px
-                    const headerTop = -56 + (scrollProgress * 68); // 68px es la diferencia total
-                    header.style.top = `${headerTop}px`;
-                    header.style.opacity = scrollProgress.toString();
-                }
-                
-                ticking = false;
-            }
-            
-            function requestTick() {
-                if (!ticking) {
-                    requestAnimationFrame(updateHeaderVisibility);
-                    ticking = true;
-                }
-            }
-            
-            // Event listener para scroll
-            window.addEventListener('scroll', requestTick, { passive: true });
-            
-            // Llamada inicial
-            updateHeaderVisibility();
+        
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+            updateCarouselImage();
         }
-
-        // Pausar autoplay cuando la página no es visible
-        document.addEventListener('visibilitychange', () => {
-            [window.carousel1, window.carousel2, window.carousel3, window.carousel4, window.carousel5, window.carousel6].forEach(carousel => {
-                if (carousel) {
-                    if (document.hidden) {
-                        carousel.stopAutoplay();
-                    } else {
-                        // Solo reactivar si el carrusel tenía autoplay activo
-                        if (carousel.autoplayActive) {
-                            carousel.startAutoplay();
-                        }
-                    }
-                }
-            });
-        });
-
-        // Smooth scroll para navegación interna
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>
